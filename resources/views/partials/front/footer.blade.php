@@ -10,7 +10,7 @@
 $(document).ready(function() {
 	
 	//Определена в layout.front
-	refreshCartButton(); //При перезагрузке страницы отображение данных в кнопке корзины... и при клике
+	refreshCartButton(); //При перезагрузке страницы отображение данных в кнопке корзины в хедере... и при клике
 		
 	$(document).on('click','.btn-addtocart', function(event) {
 		event.preventDefault(); //Чтобы окно не скакало от кликов по ссылке...
@@ -28,13 +28,14 @@ $(document).ready(function() {
               //Тип данных = string, который на деле object
               if(data != '')
               {
+				  let jsonData = JSON.parse(data);
 				  //Очищаем кнопку у товара/итема карточки товара добавить в корзину
 				  //Здесь дублирование кода конечно, но спасает от много чего. Ладно.
 				  thiskey.empty();
-				  thiskey.removeClass("btn-danger btn-addtocart");
-				  thiskey.addClass("btn-warning btn-gotocart fa fa-check");
-				  thiskey.attr('href', '/cart');
-				  thiskey.text("You take it"); //Галочку бы еще добавить) 11 символов чтобы длина кнопки та же
+				  thiskey.removeClass("btn-danger");
+				  thiskey.addClass("btn-warning fa fa-check");
+				  //thiskey.attr('href', '/cart');
+				  thiskey.text('Buy again (' + jsonData.qty + ')'); //11 символов чтобы длина кнопки та же
 				  
 				  //Обновляем Главную Кнопку корзины в верхней панели
 				  refreshCartButton();

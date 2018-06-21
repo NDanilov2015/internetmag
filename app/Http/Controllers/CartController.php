@@ -120,7 +120,9 @@ class CartController extends Controller
 		);
 		*/
 		
-		return [];
+		$newQuantity = LaraCart::find(["id" => $item->id])->qty;
+		
+		return ['qty' => $newQuantity];
 		//Назад отправлять пакет данных: количество разновидностей товаров в корзине, total
 	}
 	

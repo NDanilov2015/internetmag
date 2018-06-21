@@ -7,12 +7,10 @@
 
 @if(!LaraCart::find(['id' => $item->id]))
 <a href="#" class="btn btn-danger btn-addtocart" item-id="{{ $item->id }}">
-	<span class="fa"></span>
 	Add to cart
 </a>
 @else
-<a href="/cart" class="btn btn-warning btn-gotocart fa fa-check" item-id="{{ $item->id }}">
-	<span class="fa"></span>
-	You take it
+<a href="/cart" class="btn btn-warning btn-addtocart fa fa-check" item-id="{{ $item->id }}">
+	Buy again ({{ LaraCart::find(['id' => $item->id])->qty }})
 </a>
 @endif
