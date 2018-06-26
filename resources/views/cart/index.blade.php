@@ -109,7 +109,7 @@
 
             <div class="cart-buttons">
                 <a href="{!! action('HomeController@index') !!}" class="btn btn-success">Continue Shopping</a>
-                <a href="" class="btn btn-warning">Checkout Products</a>
+                <a href="{!! action('CheckoutController@choiceWallet') !!}" class="btn btn-warning">Checkout Products</a>
                 <a href="{!! action('CartController@destroy') !!}" class="btn btn-danger">Empty Cart</a>
             </div>
 

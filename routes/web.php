@@ -43,6 +43,8 @@ Route::group(['middleware' => 'guest'], function () {
 		Route::post('/cart/applyCoupone', 'CartController@applyCoupone');
 		Route::post('/cart/removeCoupone', 'CartController@removeCoupone');
 		
+		Route::get('/cart/checkout/choicewallet', 'CheckoutController@choiceWallet');
+		
         Route::group(['prefix' => 'auth'], function () {
 			
 			//Так это регистрация юзера или имеющийся логин?
