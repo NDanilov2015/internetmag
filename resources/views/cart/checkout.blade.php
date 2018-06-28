@@ -6,7 +6,7 @@
 <div class="col-md-12">
 	<h1>Checkout page</h1>
 	
-
+	
 
 
 </div>

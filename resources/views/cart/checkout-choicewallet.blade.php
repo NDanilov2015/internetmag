@@ -6,15 +6,16 @@
 <div class="col-md-12">
 	<h2>Checkout process: Step 1. Please, choice your Payment System</h2>
 	<br/>
-	<br/>
+	<br/>                        
 	
-	<form class="bg bg-light" id="checkout-step1-form">
+	<form class="bg bg-light" id="checkout-step1-form" action="{!! action('CheckoutController@paymentProceed') !!}" method="POST">
+		{{ csrf_field() }}
 		<fieldset>
 			<div class="form-group">
 
 			<div class="row">
 				<div class="form-check">
-					<input class="control-input" type="radio" name="walletRadioButton" id="paypalRadioButton" value="paypal" checked>
+					<input class="control-input" type="radio" name="walletRadioButton" id="paypalRadioButton" value="PayPal" checked>
 					<label class="control-label" for="paypalRadioButton">
 						PayPal
 					</label>
@@ -26,7 +27,7 @@
 			</div>
 			<div class="row">
 				<div class="form-check">
-					<input class="control-input" type="radio" name="walletRadioButton" id="skrillRadioButton" value="skrill">
+					<input class="control-input" type="radio" name="walletRadioButton" id="skrillRadioButton" value="Skrill">
 					<label class="control-label" for="skrillRadioButton">
 						Skrill&nbsp;&nbsp;
 					</label>
@@ -58,7 +59,7 @@
 		$("#submitSkrill").hide(); //Initial mode - PayPal, not Skrill
 
 		$('input[type=radio][name=walletRadioButton]').change(function(){
-			if (this.value == 'skrill') {
+			if (this.value == 'Skrill') {
 				$("#submitPaypal").hide();
 				$("#paypal-information").hide();
 				$("#submitSkrill").show();

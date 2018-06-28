@@ -45,6 +45,17 @@ Route::group(['middleware' => 'guest'], function () {
 		
 		Route::get('/cart/checkout/choicewallet', 'CheckoutController@choiceWallet');
 		
+		Route::post('/cart/checkout/paymentproceed', 'CheckoutController@paymentProceed');
+		Route::get('/cart/checkout/paymentproceed', 'CheckoutController@paymentProceed');
+		
+		Route::post('/cart/checkout/paymentproceed/paypal', 'CheckoutController@doPayPal')->name('paywithpaypal');
+		Route::post('/cart/checkout/paymentproceed/skrill', 'CheckoutController@doSkrill');
+		
+		Route::get('/cart/checkout/paymentproceed/endpaypal', 'CheckoutController@endPayPal')->name('payment.endstage');
+		Route::get('/cart/checkout/orderstatus', 'CheckoutController@viewOrderStatus')->name('payment.status');
+		
+		Route::get('/clientorders/{id?}', 'ClientOrderController@show');
+		
         Route::group(['prefix' => 'auth'], function () {
 			
 			//Так это регистрация юзера или имеющийся логин?

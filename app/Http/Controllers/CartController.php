@@ -59,7 +59,12 @@ class CartController extends Controller
 		$taxValue = $afterDiscount * $tax; //Налоги прилагаются уже после скидок в нашем маге)
 		
 		//Полная сумма со скидкой и налогом (пока вот таким сложным способом)
-		$total = LaraCart::total($formatted = false, $withDiscount = true, $withTax = false) - $taxValue;
+		$total = LaraCart::total($formatted = false, $withDiscount = true, $withTax = false) + $taxValue;
+		
+		//Сохраним в сессии:
+		session()->put(['items' => $items, 'subTotal' => $subTotal, 'discount' => $discount,
+						'afterDiscount' => $afterDiscount, 'taxValue' => $taxValue, 'total' => $total]);
+		//А где-то надо бы Session::forget() по всем этим ключам?
 		
 		//$newTotal = $newSubtotal * (1 + $tax);
 		
@@ -97,6 +102,7 @@ class CartController extends Controller
 	
 	public function destroy(Request $request)
 	{
+		LaraCart::removeCoupons();
 		LaraCart::emptyCart(); //А может лучше вызывать destroyCart() ?
 		
 		return redirect(action('CartController@index'));
