@@ -6,6 +6,6 @@
 <div class="col-md-12">
 	<h2>Order View</h2>
 	<br/>
-	@include('orders.orderview-module', ['order_id' => $order_id]);
+	@include('orders.orderview-module', ['order' => $order, 'items' => $items, 'comment' => $comment])
 </div>
 @endsection

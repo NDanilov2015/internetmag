@@ -56,6 +56,8 @@ Route::group(['middleware' => 'guest'], function () {
 		
 		Route::get('/clientorders/{id?}', 'ClientOrderController@show');
 		
+		Route::post('/clientorders/{id?}/addcomment', 'ClientOrderController@addComment');
+		
         Route::group(['prefix' => 'auth'], function () {
 			
 			//Так это регистрация юзера или имеющийся логин?

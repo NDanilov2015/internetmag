@@ -7,6 +7,22 @@
 		</div>
 		<div class="col-md-5">
 			<h4>Item options</h4>
+			<form>
+			    <fieldset id="imode">
+					<h5>Choose instance mode</h5>
+			        <input id="imode-normal" type="radio" value="normal" name="imode" checked><label for="imode-normal">Normal</label><br/>
+			        <input id="imode-heroic" type="radio" value="heroic" name="imode"><label for="imode-heroic">Heroic</label><br/>
+					<input id="imode-mythic" type="radio" value="mythic" name="imode"><label for="imode-mythic">Mythic</label><br/>
+			    </fieldset>
+
+			    <fieldset id="loot">
+					<h5>Choose loot</h5>
+			        <input id="personal" type="radio" value="personal" name="loot" checked><label for="personal">Personal loot</label><br/>
+			        <input id="master" type="radio" value="master" name="loot"><label for="master">Master loot</label><br/>
+			        <input id="fullgear" type="radio" value="fullgear" name="loot"><label for="fullgear">Full gear</label><br/>
+					<input id="bisgear" type="radio" value="bisgear" name="loot"><label for="bisgear">Bis gear</label><br/>
+			    </fieldset>
+			</form>
 		</div>
 		<div class="col-md-2">
 			<h5>Price</h5>

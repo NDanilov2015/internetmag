@@ -8,4 +8,8 @@ class ClientOrder extends Model
 {
     protected $table = 'orders';
 	
+	public function comments()
+	{
+		return $this->hasMany('App\Models\ClientOrderComment');
+	}
 }

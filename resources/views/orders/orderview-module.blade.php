@@ -1,9 +1,4 @@
-@php
-	$order = App\Models\ClientOrder::find($order_id);
-	$items = json_decode($order->items);
-@endphp
-
-<div class="col-md-12 border mt-0">
+<div class="col-md-12 border mt-0 pb-4">
 <h4>Client's information</h4>
 <div class="row">
 	<div class="col-md-12">
@@ -101,7 +96,7 @@
 				Quantity: {{ $item->options->qty }}
 			</div>
 		</div>
-	@endforeach
+		@endforeach
 	</div><!-- end class col-md-6 -->
 	
 	<!-- RC -->
@@ -151,6 +146,26 @@
 <div class="row">
 	<div class="col-md-12 alert alert-warning">
 		<b><a href="{{ url("/") }}/clientorders/{{ $order->id }}">{{ url("/") }}/clientorders/{{ $order->id }}</a></b>
+	</div>
+</div><!-- end class row -->
+
+<div class="row">
+	<div class="col-md-12">
+		@if(!empty($comment))
+			<h4>Client's comment about this order:</h4>
+			<div>
+			{{ $comment }}
+			</div>
+		@else
+		<h4>Please, give your comment to this order</h4>
+			<form action="{!! action('ClientOrderController@addComment', ['id' => $order->id]) !!}" method="POST">
+					{{ csrf_field() }}
+					<textarea class="form-control" rows="3" name="order_comment_text" id="order_comment_text"></textarea>
+					<input type="hidden" name="order_id" value="{{ $order->id }} " />
+					<br/>
+					<button type="submit" class="btn btn-success">Add new comment</button>
+			</form>
+		@endif
 	</div>
 </div><!-- end class row -->
 </div>
