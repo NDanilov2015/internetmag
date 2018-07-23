@@ -12,7 +12,7 @@
 */
 
 //Гостевой просмотр сайта вне админки
-Route::group(['middleware' => 'guest'], function () {
+//Route::group(['middleware' => 'guest'], function () {
 	
 		//Отображение домашней страницы и всех товаров + именование роута
 		Route::get('/', 'HomeController@index')->name('home.index');
@@ -71,7 +71,8 @@ Route::group(['middleware' => 'guest'], function () {
             //Route::get('reset/{token}', 'Auth\Reset@create')->name('reset');
             //Route::post('reset', 'Auth\Reset@store');
         });
-    });
+    
+	//});
 
 
 //Административное меню
@@ -88,20 +89,23 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/ecommerce', function () {
 			return view('dashboard.ecommerce.index');
 		});
-
-		Route::get('/orders', function () {
-			return view('dashboard.orders.index');
-		});
-
-		Route::get('/products', function () {
-			return view('dashboard.products.index');
-		});
-
-		Route::get('/products/{id?}/edit', function () {
-			return view('dashboard.products.index');
-		});
-
-		Route::post('/products/{id?}/edit', 'ProductsControllerDash@update');
+		
+		/* Resource set of routes - orders */
+		Route::get('/orders', 'Dashboard\OrdersController@index');
+		Route::get('/orders/{id?}', 'Dashboard\OrdersController@show');
+		Route::post('/orders/loadOrdersAJAX', 'Dashboard\OrdersController@loadOrdersAJAX');
+		
+		//Route::post('/orders/changeOrderStatusAJAX', 'Dashboard\OrdersController@update');
+		Route::get('/orders/{id?}/changestatus/{newstatus?}', 'Dashboard\OrdersController@update');
+		//GTD status change: Route::post('/orders/{id?}', 'OrdersController@update');
+		
+		/* Resource set of routes - products */
+		Route::get('/products', 'Dashboard\ItemsController@index');
+		Route::get('/products/new', 'Dashboard\ItemsController@create');
+		Route::post('/products/new', 'Dashboard\ItemsController@store');
+		Route::get('/products/{id?}/edit', 'Dashboard\ItemsController@edit');
+		Route::post('/products/{id?}/edit', 'Dashboard\ItemsControllerDash@update');
+		//GTD: Route::post('destroy')
 	});
 	
 });

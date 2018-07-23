@@ -33,7 +33,11 @@ var EcommerceOrders = function () {
                 ],
                 "pageLength": 10, // default record count per page
                 "ajax": {
-                    "url": "../admin/demo/ecommerce_orders.php", // ajax source
+					"headers": { 'X-CSRF-Token': $('meta[name="_token"]').attr('content') },
+                    //"url": "../admin/demo/ecommerce_orders.php", // ajax source
+					"url": 'orders/loadOrdersAJAX', //data source about orders - see router file routes/web.php
+					method : "POST",
+					data : {  }, //GTD: page number here specify
                 },
                 "order": [
                     [1, "asc"]

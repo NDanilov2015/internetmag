@@ -77,9 +77,6 @@
 									<th width="10%">
 										 Price
 									</th>
-									<th width="10%">
-										 Quantity
-									</th>
 									<th width="15%">
 										 Date&nbsp;Created
 									</th>
@@ -100,24 +97,14 @@
 										<input type="text" class="form-control form-filter input-sm" name="product_name">
 									</td>
 									<td>
+										@php
+											$categories = \App\Models\Category::all();
+										@endphp
 										<select name="product_category" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
-											<option value="1">Mens</option>
-											<option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Footwear</option>
-											<option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clothing</option>
-											<option value="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accessories</option>
-											<option value="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fashion Outlet</option>
-											<option value="6">Football Shirts</option>
-											<option value="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Premier League</option>
-											<option value="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Football League</option>
-											<option value="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serie A</option>
-											<option value="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bundesliga</option>
-											<option value="11">Brands</option>
-											<option value="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adidas</option>
-											<option value="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nike</option>
-											<option value="14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Airwalk</option>
-											<option value="15">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USA Pro</option>
-											<option value="16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kangol</option>
+											 @foreach ($categories as $category)
+												<option value="{!! $category->id !!}">{!! $category->name !!}</option>
+											 @endforeach
 										</select>
 									</td>
 									<td>

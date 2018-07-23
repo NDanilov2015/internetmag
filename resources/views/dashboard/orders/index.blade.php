@@ -347,7 +347,6 @@
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset("metronic/global/scripts/metronic.js") }}" type="text/javascript"></script>
 <script src="{{ asset("metronic/admin/layout/scripts/layout.js") }}" type="text/javascript"></script>
-<script src="{{ asset("metronic/admin/layout/scripts/quick-sidebar.js") }}" type="text/javascript"></script>
 <script src="{{ asset("metronic/admin/layout/scripts/demo.js") }}" type="text/javascript"></script>
 <script src="{{ asset("metronic/global/scripts/datatable.js") }}"></script>
 
