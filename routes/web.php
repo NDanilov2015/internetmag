@@ -105,6 +105,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/products/new', 'Dashboard\ItemsController@store');
 		Route::get('/products/{id?}/edit', 'Dashboard\ItemsController@edit');
 		Route::post('/products/{id?}/edit', 'Dashboard\ItemsControllerDash@update');
+		
+		Route::post('/products/loadItemsAJAX', 'Dashboard\ItemsController@loadItemsAJAX');
+		Route::post('/products/updatePromoAJAX', 'Dashboard\ItemsController@updatePromoAJAX');
 		//GTD: Route::post('destroy')
 	});
 	

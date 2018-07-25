@@ -7,11 +7,6 @@
 <!-- BEGIN PAGE CONTENT-->
 			<div class="page-content-wrapper">
 				<div class="page-content">
-					<div class="note note-danger">
-						<p>
-							 NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only.
-						</p>
-					</div>
 					<!-- Begin: life time stats -->
 					<div class="portlet">
 						<div class="portlet-title">
@@ -49,15 +44,22 @@
 						<div class="portlet-body">
 							<div class="table-container">
 								<div class="table-actions-wrapper">
+									<select class="table-group-promo-action-input form-control input-inline input-small input-sm">
+										<option value="">Select...</option>
+										<option value="setpromoted">Set Promo</option>
+										<option value="unpromoted">Cancel Promo</option>
+									</select>
+									<button class="btn btn-sm yellow table-group-promo-action-submit"><i class="fa fa-check"></i> Set Promo param</button>
+									<br/><br/>
 									<span>
 									</span>
-									<select class="table-group-action-input form-control input-inline input-small input-sm">
+									<select class="table-group-publish-action-input form-control input-inline input-small input-sm">
 										<option value="">Select...</option>
-										<option value="publish">Publish</option>
+										<option value="setpublished">Publish</option>
 										<option value="unpublished">Un-publish</option>
-										<option value="delete">Delete</option>
+										<option value="setdeleted">Delete</option>
 									</select>
-									<button class="btn btn-sm yellow table-group-action-submit"><i class="fa fa-check"></i> Submit</button>
+									<button class="btn btn-sm yellow table-group-publish-action-submit"><i class="fa fa-check"></i> Pub/Unpub param</button>
 								</div>
 								<table class="table table-striped table-bordered table-hover" id="datatable_products">
 								<thead>
@@ -65,20 +67,26 @@
 									<th width="1%">
 										<input type="checkbox" class="group-checkable">
 									</th>
-									<th width="10%">
-										 ID
+									<th width="5%">
+										 List №
+									</th>
+									<th width="5%">
+										 Item ID
 									</th>
 									<th width="15%">
 										 Product&nbsp;Name
 									</th>
-									<th width="15%">
+									<th width="10%">
 										 Category
 									</th>
 									<th width="10%">
-										 Price
+										 Basic Price
 									</th>
-									<th width="15%">
+									<th width="10%">
 										 Date&nbsp;Created
+									</th>
+									<th width="10%">
+										 Special&nbsp;Promo
 									</th>
 									<th width="10%">
 										 Status
@@ -89,6 +97,9 @@
 								</tr>
 								<tr role="row" class="filter">
 									<td>
+									</td>
+									<td>
+										<input type="text" class="form-control form-filter input-sm" name="item_number">
 									</td>
 									<td>
 										<input type="text" class="form-control form-filter input-sm" name="product_id">
@@ -114,12 +125,6 @@
 										<input type="text" class="form-control form-filter input-sm" name="product_price_to" placeholder="To"/>
 									</td>
 									<td>
-										<div class="margin-bottom-5">
-											<input type="text" class="form-control form-filter input-sm" name="product_quantity_from" placeholder="From"/>
-										</div>
-										<input type="text" class="form-control form-filter input-sm" name="product_quantity_to" placeholder="To"/>
-									</td>
-									<td>
 										<div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
 											<input type="text" class="form-control form-filter input-sm" readonly name="product_created_from" placeholder="From">
 											<span class="input-group-btn">
@@ -133,8 +138,15 @@
 											</span>
 										</div>
 									</td>
+									<td><!-- Is in special Promo Action ? -->
+										<select id="specialpromo_filter" name="specialpromo_filter" class="form-control form-filter input-sm">
+											<option value="notusing">Select...</option>
+											<option value="promoted">In spec promo</option>
+											<option value="notpromoted">Not in spec promo</option>
+										</select>
+									</td>
 									<td>
-										<select name="product_status" class="form-control form-filter input-sm">
+										<select id="product_status_filter" name="product_status_filter" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
 											<option value="published">Published</option>
 											<option value="notpublished">Not Published</option>
@@ -163,6 +175,22 @@
 	</div>
 	<!-- END CONTENT -->
 	
+<!-- Special scripts -->
+<script>
+        jQuery(document).ready(function() {
+			
+			if (localStorage['specialpromo_filter']) {
+				$("#specialpromo_filter").val(localStorage['specialpromo_filter']);
+			}
+			
+			$("#specialpromo_filter").on('change', function() { 
+				localStorage['specialpromo_filter'] = this.value;
+				location.reload();
+			});
+			
+		});
+</script>
+	
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 <script type="text/javascript" src="{{ asset("metronic/global/plugins/select2/select2.min.js") }}"></script>
 <script type="text/javascript" src="{{ asset("metronic/global/plugins/datatables/media/js/jquery.dataTables.min.js") }}"></script>
@@ -186,7 +214,7 @@
 		   Layout.init(); // init current layout
 		   //QuickSidebar.init(); // init quick sidebar
 		   Demo.init(); // init demo features
-           EcommerceProducts.init();
+           EcommerceProducts.init();		   
         });
 </script>
 <!-- END JAVASCRIPTS -->

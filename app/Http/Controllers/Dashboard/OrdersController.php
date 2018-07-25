@@ -44,14 +44,6 @@ class OrdersController extends Controller
 			$comment_text = '';
 		}
 		
-		//Может запихнуть в tools?
-		$order_status_labels = [
-			'paid' => 'info',
-			'done' => 'success',
-			'cancelled' => 'danger',
-			'proceeding' => 'warning',
-		];
-		
 		$order_status_label = $this->order_status_labels[$order->order_status];
 		
 		$items = json_decode($order->items);

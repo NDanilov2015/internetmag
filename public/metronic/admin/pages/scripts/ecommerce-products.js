@@ -33,7 +33,9 @@ var EcommerceProducts = function () {
                 ],
                 "pageLength": 10, // default record count per page
                 "ajax": {
-                    "url": "../admin/demo/ecommerce_products.php", // ajax source
+					"headers": { 'X-CSRF-Token': $('meta[name="_token"]').attr('content') },
+                    "url": 'products/loadItemsAJAX', // ajax source
+					data : { 'specialpromo_filter': localStorage['specialpromo_filter'], }, //GTD: page number here specify
                 },
                 "order": [
                     [1, "asc"]
@@ -41,16 +43,38 @@ var EcommerceProducts = function () {
             }
         });
 
-         // handle group actionsubmit button click
-        grid.getTableWrapper().on('click', '.table-group-action-submit', function (e) {
+         // handle group "Promo list actions" submit button click
+        grid.getTableWrapper().on('click', '.table-group-promo-action-submit', function (e) {
             e.preventDefault();
-            var action = $(".table-group-action-input", grid.getTableWrapper());
-            if (action.val() != "" && grid.getSelectedRowsCount() > 0) {
-                grid.setAjaxParam("customActionType", "group_action");
+            var action = $(".table-group-promo-action-input", grid.getTableWrapper());
+            
+			if (action.val() != "" && grid.getSelectedRowsCount() > 0) {
+                
+				//I don't understand internal AJAX in Metronic
+				/*
+				grid.setAjaxParam("customActionType", "group_action");
                 grid.setAjaxParam("customActionName", action.val());
                 grid.setAjaxParam("id", grid.getSelectedRows());
                 grid.getDataTable().ajax.reload();
                 grid.clearAjaxParams();
+				*/
+				
+				//Temporary dog-nail!
+				$.ajax({
+				   "headers": { 'X-CSRF-Token': $('meta[name="_token"]').attr('content') },
+				   "url" : 'products/updatePromoAJAX',
+				   method : "POST",
+				   data : { "action": action.val(), "items_ids": grid.getSelectedRows(), },
+				   success : function(data)
+				   {
+					  location.reload(); //Refresh page
+				   },
+				   error: function(errmsg) {
+					  console.log(errmsg.responseText)
+				   }
+			   });
+				
+				
             } else if (action.val() == "") {
                 Metronic.alert({
                     type: 'danger',

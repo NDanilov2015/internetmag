@@ -16,14 +16,16 @@ var Datatable = function() {
         var selected = $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', table).size();
         var text = tableOptions.dataTable.language.metronicGroupActions;
         if (selected > 0) {
-            $('.table-group-actions > span', tableWrapper).text(text.replace("_TOTAL_", selected));
+            //$('.table-group-actions > span', tableWrapper).text(text.replace("_TOTAL_", selected));
+			$('.col-md-6 > .selected-records-info', tableWrapper).text(text.replace("_TOTAL_", selected));
         } else {
-            $('.table-group-actions > span', tableWrapper).text("");
+            //$('.table-group-actions > span', tableWrapper).text("");
+			$('.col-md-6 > .selected-records-info', tableWrapper).text("");
         }
-    };
+    }; //and then, it call as countSelectedRecords()
 
     return {
-
+				
         //main function to initiate the module
         init: function(options) {
 
@@ -41,7 +43,7 @@ var Datatable = function() {
                 resetGroupActionInputOnSuccess: true,
                 loadingMessage: 'Loading...',
                 dataTable: {
-                    "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-scrollable't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
+                    "dom": "<'row'<'col-md-6 col-sm-12'pli><'col-md-6 col-sm-12'<'selected-records-info pull-left'><'table-group-actions pull-right'>>r><'table-scrollable't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
                     "pageLength": 10, // default records per page
                     "language": { // language settings
                         // metronic spesific
@@ -183,7 +185,7 @@ var Datatable = function() {
                 $('.table-group-actions', tableWrapper).html($('.table-actions-wrapper', tableContainer).html()); // place the panel inside the wrapper
                 $('.table-actions-wrapper', tableContainer).remove(); // remove the template container
             }
-            // handle group checkboxes check/uncheck
+            // handle group checkboxes check/uncheck - "top" super-checkbox!
             $('.group-checkable', table).change(function() {
                 var set = $('tbody > tr > td:nth-child(1) input[type="checkbox"]', table);
                 var checked = $(this).is(":checked");
@@ -197,6 +199,9 @@ var Datatable = function() {
             // handle row's checkbox click
             table.on('change', 'tbody > tr > td:nth-child(1) input[type="checkbox"]', function() {
                 countSelectedRecords();
+				
+				//Special internal namespace
+				//console.log(the.getSelectedRows());
             });
 
             // handle filter submit button click
