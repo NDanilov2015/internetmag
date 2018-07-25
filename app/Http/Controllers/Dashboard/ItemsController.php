@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Item;
+use App\Models\Category;
 use Debugbar;
 
 class ItemsController extends Controller
@@ -101,6 +102,25 @@ class ItemsController extends Controller
 		echo "updatePromoAJAX method call()";
 	}
 	
+	/**
+	 * Bulk updating of "status" attributes
+	 *
+	 */
+	public function updateStatusAJAX(Request $request)
+	{
+		$items_ids = $request->items_ids; //array of items ids
+		
+		foreach ($items_ids as $id) {
+			$item = Item::find($id);
+			if ($request->action == "setpublished") { $item->item_status = 'published'; }
+			if ($request->action == "unpublished") { $item->item_status = 'unpublished'; }
+			if ($request->action == "setdeleted") { $item->item_status = 'deleted'; }
+			$item->save();
+		} //end foreach
+		
+		echo "updateStatusAJAX method call()";
+	}
+	
     /**
      * Remove the specified resource from storage.
      *
@@ -116,18 +136,38 @@ class ItemsController extends Controller
 	public function loadItemsAJAX(Request $request)
 	{		
 		$items = Item::all(); //Return full "Collection" of items
-		
-		if ($request->catalog_filter != '') {
+				
+		//action = filter || filter_cancel
+		if ($request->action == "filter") {
 			
-		}
-		
-		if ($request->specialpromo_filter == "promoted") {
-			$items = $items->where('featured', "1"); //where() give Collection, all() give array of models
-		}
-		
-		if ($request->specialpromo_filter == "notpromoted") {
-			$items = $items->where('featured', "0"); //where() give Collection, all() give array of models
-		}
+			/* Category filter */
+			if ($request->product_category != null) {
+				$category = Category::find($request->product_category);
+				$items = $category->items()->get();
+			}
+			
+			/* Special promotion filter */
+			if (($request->specialpromo_filter != null) && ($request->specialpromo_filter == 'promoted')) {
+				$items = $items->where('featured', "1");
+			}
+			
+			if (($request->specialpromo_filter != null) && ($request->specialpromo_filter == 'notpromoted')) {
+				$items = $items->where('featured', "0");
+			}
+			
+			/* Status published/unpublished filter */
+			if (($request->product_status_filter != null) && ($request->product_status_filter == 'published')) {
+				$items = $items->where('item_status', "published");
+			}
+			
+			if (($request->product_status_filter != null) && ($request->product_status_filter == 'notpromoted')) {
+				$items = $items->where('item_status', "unpublished");
+			}
+			
+			if (($request->product_status_filter != null) && ($request->product_status_filter == 'deleted')) {
+				$items = $items->where('item_status', "deleted");
+			}	
+		}//end filter system				 
 		
 		$items = array_values($items->toArray()); //Continuous numbered array... of arrays, not Model "Item" objects!
 		$iTotalRecords = count($items);

@@ -53,13 +53,13 @@
 									<br/><br/>
 									<span>
 									</span>
-									<select class="table-group-publish-action-input form-control input-inline input-small input-sm">
+									<select class="table-group-itemstatus-action-input form-control input-inline input-small input-sm">
 										<option value="">Select...</option>
 										<option value="setpublished">Publish</option>
 										<option value="unpublished">Un-publish</option>
 										<option value="setdeleted">Delete</option>
 									</select>
-									<button class="btn btn-sm yellow table-group-publish-action-submit"><i class="fa fa-check"></i> Pub/Unpub param</button>
+									<button class="btn btn-sm yellow table-group-itemstatus-action-submit"><i class="fa fa-check"></i> Pub/Unpub param</button>
 								</div>
 								<table class="table table-striped table-bordered table-hover" id="datatable_products">
 								<thead>
@@ -140,7 +140,7 @@
 									</td>
 									<td><!-- Is in special Promo Action ? -->
 										<select id="specialpromo_filter" name="specialpromo_filter" class="form-control form-filter input-sm">
-											<option value="notusing">Select...</option>
+											<option value="">Select...</option>
 											<option value="promoted">In spec promo</option>
 											<option value="notpromoted">Not in spec promo</option>
 										</select>
@@ -149,7 +149,7 @@
 										<select id="product_status_filter" name="product_status_filter" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
 											<option value="published">Published</option>
-											<option value="notpublished">Not Published</option>
+											<option value="unpublished">Not Published</option>
 											<option value="deleted">Deleted</option>
 										</select>
 									</td>
@@ -157,7 +157,7 @@
 										<div class="margin-bottom-5">
 											<button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
 										</div>
-										<button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i> Reset</button>
+										<button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i> Reset F</button>
 									</td>
 								</tr>
 								</thead>
@@ -177,6 +177,7 @@
 	
 <!-- Special scripts -->
 <script>
+/*
         jQuery(document).ready(function() {
 			
 			if (localStorage['specialpromo_filter']) {
@@ -189,6 +190,7 @@
 			});
 			
 		});
+*/
 </script>
 	
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
