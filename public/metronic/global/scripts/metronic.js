@@ -201,6 +201,7 @@ var Metronic = function() {
             return;
         }
         var test = $("input[type=checkbox]:not(.toggle, .md-check, .md-radiobtn, .make-switch, .icheck), input[type=radio]:not(.toggle, .md-check, .md-radiobtn, .star, .make-switch, .icheck)");
+		
         if (test.size() > 0) {
             test.each(function() {
                 if ($(this).parents(".checker").size() === 0) {
@@ -581,7 +582,7 @@ var Metronic = function() {
 
             //UI Component handlers     
             handleMaterialDesign(); // handle material design       
-            handleUniform(); // hanfle custom radio & checkboxes
+            handleUniform(); // handle custom radio & checkboxes
             handleiCheck(); // handles custom icheck radio and checkboxes
             handleBootstrapSwitch(); // handle bootstrap switch plugin
             handleScrollers(); // handles slim scrolling contents 

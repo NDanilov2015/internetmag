@@ -58,3 +58,11 @@ Change Quick Sidebar Width
   margin-left: -370px;
 }
 */
+
+/* Mine CSS code */
+#promosettings-table td > .checker {
+	display: block;
+    margin: auto;
+    width: 100%;
+	text-align: center;
+}

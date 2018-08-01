@@ -110,6 +110,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/products/updatePromoAJAX', 'Dashboard\ItemsController@updatePromoAJAX');
 		Route::post('/products/updateStatusAJAX', 'Dashboard\ItemsController@updateStatusAJAX');
 		//GTD: Route::post('destroy')
+		
+		/* Set of routes - settings of promo actions */
+		Route::get('/promosettings', 'Dashboard\PromoSettingsController@index');
+		Route::post('/promosettings/update', 'Dashboard\PromoSettingsController@update');
 	});
 	
 });

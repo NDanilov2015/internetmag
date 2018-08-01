@@ -66,6 +66,13 @@
 					<span class="title">Products</span>
 					</a>
 				</li>
+				<!-- Settings of Promo Actions in Slider -->
+				<li>
+					<a href="/dashboard/promosettings">
+					<i class="icon-energy"></i>
+					<span class="title">Promo Actions Setting</span>
+					</a>
+				</li>
 			</ul>
 			<!-- END SIDEBAR MENU -->
 		</div>

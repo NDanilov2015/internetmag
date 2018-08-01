@@ -185,11 +185,13 @@ var Datatable = function() {
                 $('.table-group-actions', tableWrapper).html($('.table-actions-wrapper', tableContainer).html()); // place the panel inside the wrapper
                 $('.table-actions-wrapper', tableContainer).remove(); // remove the template container
             }
-            // handle group checkboxes check/uncheck - "top" super-checkbox!
+			
+            // handle group checkboxes check/uncheck - "top" super-checkbox! (For check/uncheck all checkboxes on page)
             $('.group-checkable', table).change(function() {
                 var set = $('tbody > tr > td:nth-child(1) input[type="checkbox"]', table);
                 var checked = $(this).is(":checked");
-                $(set).each(function() {
+				//Check all checkboxed on page
+                $(set).each(function() { 
                     $(this).attr("checked", checked);
                 });
                 $.uniform.update(set);
@@ -215,7 +217,7 @@ var Datatable = function() {
                 e.preventDefault();
                 the.resetFilter();
             });
-        },
+        }, //end init() function
 
         submitFilter: function() {
             the.setAjaxParam("action", tableOptions.filterApplyAction);
