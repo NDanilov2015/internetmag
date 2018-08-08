@@ -23,7 +23,7 @@ $itemPath = $category->slug . '/' . $item->slug;
 			</label><br>
 		-->
 			<div class="btn-group">
-				@include('components.addtocart-button')
+				@include('partials.front.addtocart-button')
 				&nbsp;
 				<a href="#" class="btn btn-success btn-quickview" item-id="{{ $item->id }}">Quick View</a>
 			</div>

@@ -1,6 +1,19 @@
 <div class="row mt-4 bg-success">
     <div class="col-md-12">
-      @include('partials.front.footermenu')
+	  <ul class="nav justify-content-center">
+		  <li class="nav-item">
+			<a class="nav-link text-white" href="#">About US</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link text-white" href="#">Terms & conditions</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link text-white" href="#">User Agreement</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link text-white" href="#">FAQ</a>
+		  </li>
+	  </ul>
     </div>
   </div>
 </div>

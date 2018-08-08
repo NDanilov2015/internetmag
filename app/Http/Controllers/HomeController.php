@@ -120,8 +120,8 @@ class HomeController extends Controller
 				/* PHP 7 тернарка + isset = null coalescence operator
 				 * То есть если $category не null, тогда её. Иначе ''
 				 */
-				$outputCardMode .= view('components.showmore-button', ['viewmode' => 'cardview', 'item' => $item, 'category' => $category ?? ''])->render();
-				$outputListMode .= view('components.showmore-button', ['viewmode' => 'listview', 'item' => $item, 'category' => $category ?? ''])->render();
+				$outputCardMode .= view('partials.front.showmore-button', ['viewmode' => 'cardview', 'item' => $item, 'category' => $category ?? ''])->render();
+				$outputListMode .= view('partials.front.showmore-button', ['viewmode' => 'listview', 'item' => $item, 'category' => $category ?? ''])->render();
 			}
 				
 			return ['cardView' => $outputCardMode, 'listView' => $outputListMode];

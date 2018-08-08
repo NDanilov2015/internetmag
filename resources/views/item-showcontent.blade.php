@@ -40,7 +40,7 @@
 
 	<div class="row mt-4">
 		<div class="col-md-12">
-			@include('components.addtocart-button')
+			@include('partials.front.addtocart-button')
 		</div>
 	</div>
 	

@@ -74,7 +74,7 @@
     <div class="row mt-4 ml-0 mr-0">
       
       <div class="col-md-2">
-        @include('leftmenu')
+        @include('partials.front.leftmenu')
       </div>
 
       <div class="col-md-10">
@@ -82,7 +82,7 @@
         <!-- Сделай эту строку на всю ширину -->
         <div class="row mb-5">
           <div class="col-md-12">
-            @include('slideractions')
+            @include('partials.front.slideractions')
           </div>
         </div>
 

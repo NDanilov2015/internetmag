@@ -18,7 +18,7 @@ $itemPath = $category->slug . '/' . $item->slug;
 		  	</div>
 		  	<div class="row">
 		  <p class="card-text">{{ $item->description }}</p>
-		  @include('components.addtocart-button')
+		  @include('partials.front.addtocart-button')
 		  &nbsp;
 		  <a href="#" class="btn btn-success btn-quickview" item-id="{{ $item->id }}">Quick View</a>
 		  </div>

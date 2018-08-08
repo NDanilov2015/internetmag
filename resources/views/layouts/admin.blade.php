@@ -10,7 +10,9 @@
              <!-- BEGIN CONTAINER -->
              <div class="page-container">   
                 @include('partials.admin.menu')
-                @include('partials.admin.content')
+                
+				@yield('content')
+				
                 {{-- @include('partials.admin.qsidebar') --}}
              </div>
              <!-- END CONTAINER -->

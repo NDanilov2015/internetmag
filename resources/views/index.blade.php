@@ -60,7 +60,7 @@
   @endforelse
   
   <!-- В $item будет хранится последний элемент итерации -->
-  @include('components.showmore-button', ['viewmode' => 'listview', 'item' => $item, 'category' => $category])
+  @include('partials.front.showmore-button', ['viewmode' => 'listview', 'item' => $item, 'category' => $category])
 </div>
 
 <div class="card-deck mt-4 load-data" id="cardview-mode" style="display: none;">
@@ -71,7 +71,7 @@
       @endforelse
       
       <!-- В $item будет хранится последний элемент итерации -->
-      @include('components.showmore-button', ['viewmode' => 'cardview', 'item' => $item, 'category' => $category])
+      @include('partials.front.showmore-button', ['viewmode' => 'cardview', 'item' => $item, 'category' => $category])
 </div><!-- end class=card-deck -->
 
 <!-- А нельзя ли замену классов в блоке делать при нажатии кнопки переключения режима, а? -->
