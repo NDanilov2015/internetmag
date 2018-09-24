@@ -101,10 +101,10 @@ Route::group(['middleware' => 'auth'], function () {
 		
 		/* Resource set of routes - products */
 		Route::get('/products', 'Dashboard\ItemsController@index');
-		Route::get('/products/new', 'Dashboard\ItemsController@create');
-		Route::post('/products/new', 'Dashboard\ItemsController@store');
+		Route::get('/products/new', 'Dashboard\ItemsController@create'); //new item create form
+		Route::post('/products/new', 'Dashboard\ItemsController@store'); //for new resource
 		Route::get('/products/{id?}/edit', 'Dashboard\ItemsController@edit');
-		Route::post('/products/{id?}/edit', 'Dashboard\ItemsControllerDash@update');
+		Route::post('/products/{id?}/edit/save', 'Dashboard\ItemsController@update'); //[Save], [Save and Conttinue Edit] btns
 		
 		Route::post('/products/loadItemsAJAX', 'Dashboard\ItemsController@loadItemsAJAX');
 		Route::post('/products/updatePromoAJAX', 'Dashboard\ItemsController@updatePromoAJAX');

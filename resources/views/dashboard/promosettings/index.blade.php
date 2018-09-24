@@ -3,9 +3,6 @@
 @section('title', 'Dashboard - Promo Actions Settings') {{-- А потом напишем trans('general.dashboard') --}}
 
 @section('content')
-<!-- BEGIN CONTENT -->
-	<div class="page-content-wrapper">
-		<div class="page-content">
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">
 			Promo Action Settings: <small>choose sequence for promo-actions do</small>
@@ -125,9 +122,6 @@
 				</div>
 			</div><!-- end class row -->
 			<!-- END PAGE CONTENT-->
-		</div>
-	</div>
-	<!-- END CONTENT -->
 	
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset("metronic/global/scripts/metronic.js") }}" type="text/javascript"></script>

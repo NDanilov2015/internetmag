@@ -38,7 +38,7 @@
 				</li>
 
 				<!-- Dashboard menu item (CENTRAL ITEM) -->
-				<li class="start active open">
+				<li class="start">
 					<a href="/dashboard">
 					<i class="icon-home"></i>
 					<span class="title">Dashboard</span>
@@ -50,6 +50,7 @@
 					<a href="/dashboard/ecommerce">
 					<i class="icon-list"></i>
 					<span class="title">eCommerce overview</span>
+					<span class="selected"></span>
 					</a>
 				</li>
 				<!-- eCommerce Orders -->
@@ -57,6 +58,7 @@
 					<a href="/dashboard/orders">
 					<i class="icon-basket"></i>
 					<span class="title">Orders</span>
+					<span class="selected"></span>
 					</a>
 				</li>
 				<!-- Products overview -->
@@ -64,6 +66,7 @@
 					<a href="/dashboard/products">
 					<i class="icon-handbag"></i>
 					<span class="title">Products</span>
+					<span class="selected"></span>
 					</a>
 				</li>
 				<!-- Settings of Promo Actions in Slider -->
@@ -71,6 +74,7 @@
 					<a href="/dashboard/promosettings">
 					<i class="icon-energy"></i>
 					<span class="title">Promo Actions Setting</span>
+					<span class="selected"></span>
 					</a>
 				</li>
 			</ul>

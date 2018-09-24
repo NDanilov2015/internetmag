@@ -3,10 +3,6 @@
 @section('title', 'Products List') {{-- А потом напишем trans('general.dashboard') --}}
 
 @section('content')
-
-<!-- BEGIN PAGE CONTENT-->
-			<div class="page-content-wrapper">
-				<div class="page-content">
 					<!-- Begin: life time stats -->
 					<div class="portlet">
 						<div class="portlet-title">
@@ -171,9 +167,6 @@
 				</div>
 			</div>
 			<!-- END PAGE CONTENT-->
-		</div>
-	</div>
-	<!-- END CONTENT -->
 	
 <!-- Special scripts -->
 <script>

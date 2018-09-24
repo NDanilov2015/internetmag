@@ -51,17 +51,6 @@ class ItemsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -69,7 +58,10 @@ class ItemsController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.products.index');
+		$item = Item::find($id);
+		$item_categories = $item->categories()->get(); //get() on QueryBuilder give Models array
+		
+        return view('dashboard.products.edit', ['item' => $item, 'item_categories' => $item_categories]);
     }
 
     /**
@@ -81,7 +73,38 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		//dd($request);
+		
+		$item = Item::find($id);
+		//Update data in model from out POST request
+		$item->name = $request->product['name'];
+		$item->description = $request->product['description'];
+		$item->price = filter_var($request->product['price'], FILTER_SANITIZE_NUMBER_INT);
+		$item->item_status = $request->product['status'];
+		//SEO parameters
+		$item->meta_title = $request->product['meta_title'];
+		$item->meta_keywords = $request->product['meta_keywords'];
+		$item->meta_description = $request->product['meta_description'];
+		//Saving updating product to database
+		$item->save();
+		
+		$item->categories()->sync($request->product['categories']);
+		//Reset old category <-> item many to many relations
+		
+		//Saving updating category system to db through belongsToMany()
+		/*
+		foreach ($request->product['categories'] as $category_id) {
+			$item->categories()->save(Category::find($category_id));
+		}
+		*/
+		
+		if ($request->operation_button == "save" ) {
+			return redirect(action('Dashboard\ItemsController@index')); //Как мы раньше возвращали?
+		}
+		
+		if ($request->operation_button == "save_and_continue") { return redirect()->back(); }
+		
+		return redirect(action('Dashboard\ItemsController@index'));
     }
 	
 	/**
@@ -199,7 +222,7 @@ class ItemsController extends Controller
 			$records["data"][] = array(
 			  '<input type="checkbox" name="id[]" value="'.$id.'">',
 			  $i, //Item number in frontend list, not product ID!
-			  $items[$i]['id'],
+			  $id,
 			  $items[$i]['name'],
 			  $category,
 			  priceStdFormat($items[$i]['price']),
@@ -207,7 +230,7 @@ class ItemsController extends Controller
 			  $items[$i]['updated_at'],
 			  '<span class="label label-sm label-'.$spec_promo_class.'">'.ucfirst($spec_promo_text).'</span>',
 			  '<span class="label label-sm label-'.$status_class.'">'.ucfirst($status_text).'</span>',
-			  '<a href="ecommerce_products_edit.html" class="btn btn-xs default btn-editable"><i class="fa fa-pencil"></i> Edit</a>',
+			  '<a href="products/'.$id.'/edit" class="btn btn-xs default btn-editable"><i class="fa fa-pencil"></i> Edit</a>',
 			);
 		}//end for
 

@@ -71,7 +71,7 @@ var EcommerceProductsEdit = function () {
 
         uploader.init();
 
-    }
+    } //end handleImages()
 
     var handleReviews = function () {
 
@@ -110,7 +110,7 @@ var EcommerceProductsEdit = function () {
                 ] // set first column as a default sort by asc
             }
         });
-    }
+    } //end handleReviews()
 
     var handleHistory = function () {
 
@@ -143,7 +143,7 @@ var EcommerceProductsEdit = function () {
                 ] // set first column as a default sort by asc
             }
         });
-    } 
+    }//end handlehistory()
 
     var initComponents = function () {
         //init datepickers

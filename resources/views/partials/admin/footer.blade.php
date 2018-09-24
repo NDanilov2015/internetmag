@@ -11,3 +11,14 @@
 <!-- END FOOTER -->
 
 </footer>
+
+<!-- LEFT MENU POINTER MOVE SCRIPT -->
+<script type="text/javascript">
+	jQuery(document).ready(function() {			
+		let realPath = window.location.pathname;
+		$(".page-sidebar-menu-light li").removeClass("active open");
+		let target_li = $("a[href*='"+realPath+"']").parent(); //GTD: need check if href is contained in realPath
+		target_li.addClass("active open");
+	});
+</script>
+<!-- END MENU POINTER MOVE SCRIPT -->

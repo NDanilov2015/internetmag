@@ -32,8 +32,12 @@
 
     <link href="{{ asset("metronic/admin/layout/css/custom.css") }}" rel="stylesheet" type="text/css"/>
     <!-- END THEME STYLES -->
-
-    <!-- BEGIN CORE PLUGINS -->
+	
+	<!-- PAGE STYLE IN HEADER -->	
+	@yield('page-header-styles')
+	<!-- END PAGE STYLE IN HEADER -->
+	
+    <!-- BEGIN CORE JS PLUGINS -->
     <!--[if lt IE 9]>
     <script src="{{ asset("metronic/assets/global/plugins/respond.min.js") }}"></script>
     <script src="{{ asset("metronic/global/plugins/excanvas.min.js") }}"></script> 

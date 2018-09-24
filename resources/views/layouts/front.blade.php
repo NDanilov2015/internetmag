@@ -26,7 +26,8 @@
 		
 		<a href="/auth/login" class="btn btn-info text-white">Login to admin dash</a>
       </nav>
-    </div>
+    </div><!-- end col-md-12 of header line -->
+ </div><!-- end row of header line -->
 	
 	<script type="text/javascript">
 	/* Отображает сверхкраткую статистику корзины
@@ -95,7 +96,6 @@
 
     </div>
   </div>
-</div>
 <!-- END CONTAINER -->
   @include('partials.front.footer')
 </body>
